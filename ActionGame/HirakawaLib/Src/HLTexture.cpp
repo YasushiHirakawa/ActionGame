@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLTexture.h
+//		HLTexture.h
 //
 //		@brief	KoudoLib テクスチャ管理
 //		@author	Yasushi Hirakawa
@@ -8,7 +8,7 @@
 //
 ****************************************************************************************************/
 
-#include "KLTexture.h"
+#include "HLTexture.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -17,14 +17,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLTexture::KLTexture()
+HLTexture::HLTexture()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLTexture::~KLTexture()
+HLTexture::~HLTexture()
 {
 }
 
@@ -33,7 +33,7 @@ KLTexture::~KLTexture()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLTexture::Init()
+bool HLTexture::Init()
 {
 	bool ret = true;
 
@@ -51,10 +51,10 @@ bool KLTexture::Init()
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLTexture::Destroy()
+void HLTexture::Destroy()
 {
 	// リストデータ全削除
-	LPKLTextureDataList	p_list = p_texture_data_list_top_,
+	LPHLTextureDataList	p_list = p_texture_data_list_top_,
 						p_delete_list = NULL;
 	while (p_list != NULL) {
 		p_delete_list = p_list;
@@ -64,7 +64,7 @@ void KLTexture::Destroy()
 		wchar_t	warning_message[kStrMax];
 		wcscpy_s(warning_message, L"解放されていないテクスチャがあったので強制解放しました。\n");
 		wcscat_s(warning_message, p_delete_list->p_texture_data->p_file_name);
-		MessageBox(KLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
+		MessageBox(HLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
 #endif
 
 		SAFE_RELEASE(p_delete_list->p_texture_data->p_texture);
@@ -77,17 +77,17 @@ void KLTexture::Destroy()
 //	@brief	モデルデータ作成
 //	@param	ID3D11Device*		pDevice			：デバイス
 //	@param	const wchar_t*		pFilename		：ファイル名
-//	@param	LPKLTextureData*	ppTextureData	：テクスチャデータ格納先ポインタ
+//	@param	LPHLTextureData*	ppTextureData	：テクスチャデータ格納先ポインタ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLTexture::CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilename, LPKLTextureData* ppTextureData)
+bool HLTexture::CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilename, LPHLTextureData* ppTextureData)
 {
 	bool				ret = true;
-	LPKLTextureDataList	p_list = NULL;
+	LPHLTextureDataList	p_list = NULL;
 
-	LPKLTextureData		p_texture_data = NULL;
-	LPKLTextureDataList	p_texture_data_list = NULL;
+	LPHLTextureData		p_texture_data = NULL;
+	LPHLTextureDataList	p_texture_data_list = NULL;
 
 	do {
 
@@ -111,7 +111,7 @@ bool KLTexture::CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilenam
 		}
 
 		// テクスチャデータのメモリ確保
-		p_texture_data = new KLTextureData;
+		p_texture_data = new HLTextureData;
 		if (p_texture_data == NULL) {
 			ret = false;
 			break;
@@ -133,7 +133,7 @@ bool KLTexture::CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilenam
 		wcscpy_s(p_texture_data->p_file_name, pFilename);
 
 		// テクスチャデータリストのメモリ確保
-		p_texture_data_list = new KLTextureDataList;
+		p_texture_data_list = new HLTextureDataList;
 		if (p_texture_data_list == NULL) {
 			ret = false;
 			break;
@@ -171,16 +171,16 @@ bool KLTexture::CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilenam
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	テクスチャデータ解放
-//	@param	LPKLTextureData	pTextureData	：解放するテクスチャデータ
+//	@param	LPHLTextureData	pTextureData	：解放するテクスチャデータ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLTexture::ReleaseTextureData(LPKLTextureData pTextureData)
+bool HLTexture::ReleaseTextureData(LPHLTextureData pTextureData)
 {
 	bool	ret = false;
 
 	// テクスチャデータリストにテクスチャデータがあるかチェック
-	LPKLTextureDataList	p_list = p_texture_data_list_top_,
+	LPHLTextureDataList	p_list = p_texture_data_list_top_,
 						p_prev_list = NULL;
 	while (p_list != NULL) {
 		// 同名のテクスチャデータがあったら参照カウンタをデクリメントして、

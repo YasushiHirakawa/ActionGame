@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLSprite.h
+//		HLSprite.h
 //
 //		@brief	KoudoLib スプライト描画管理
 //		@author	Yasushi Hirakawa
@@ -8,16 +8,16 @@
 //
 ****************************************************************************************************/
 
-#ifndef __KLSPRITE_H__
-#define __KLSPRITE_H__
+#ifndef __HLSPRITE_H__
+#define __HLSPRITE_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
-#include "KLDirect3D.h"
-#include "KLTexture.h"
+#include "HLCommon.h"
+#include "HLDirect3D.h"
+#include "HLTexture.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -28,11 +28,11 @@
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLSprite
+class HLSprite
 {
 public:
-	KLSprite();
-	~KLSprite();
+	HLSprite();
+	~HLSprite();
 
 	bool Init(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext);	// 初期化
 	void Destroy();								// 破棄
@@ -41,7 +41,7 @@ public:
 	void EndSprite();							// 描画終了
 
 	// スプライト描画
-	void DrawSprite(LPKLTextureData pTextureData, Vector2 Position, RECT Rect, 
+	void DrawSprite(LPHLTextureData pTextureData, Vector2 Position, RECT Rect, 
 					Vector4 Color = Vector4(1.0F, 1.0F, 1.0F, 1.0F), 
 					Vector2 Origin = Vector2(0.0F, 0.0F),
 					float Rotation = 0.0F, float Scale = 1.0F);
@@ -55,4 +55,4 @@ private:
 };
 
 
-#endif //__KLSPRITE_H__
+#endif //__HLSPRITE_H__

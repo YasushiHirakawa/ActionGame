@@ -127,26 +127,26 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Inc\KoudoLib.cpp" />
-    <ClCompile Include="Src\KLAudio.cpp" />
-    <ClCompile Include="Src\KLCommon.cpp" />
-    <ClCompile Include="Src\KLDirect3D.cpp" />
-    <ClCompile Include="Src\KLFrameRate.cpp" />
-    <ClCompile Include="Src\KLInput.cpp" />
-    <ClCompile Include="Src\KLModel.cpp" />
-    <ClCompile Include="Src\KLSprite.cpp" />
-    <ClCompile Include="Src\KLTexture.cpp" />
+    <ClCompile Include="Inc\HirakawaLib.cpp" />
+    <ClCompile Include="Src\HLAudio.cpp" />
+    <ClCompile Include="Src\HLCommon.cpp" />
+    <ClCompile Include="Src\HLDirect3D.cpp" />
+    <ClCompile Include="Src\HLFrameRate.cpp" />
+    <ClCompile Include="Src\HLInput.cpp" />
+    <ClCompile Include="Src\HLModel.cpp" />
+    <ClCompile Include="Src\HLSprite.cpp" />
+    <ClCompile Include="Src\HLTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\KoudoLib.h" />
-    <ClInclude Include="Src\KLAudio.h" />
-    <ClInclude Include="Src\KLCommon.h" />
-    <ClInclude Include="Src\KLDirect3D.h" />
-    <ClInclude Include="Src\KLFrameRate.h" />
-    <ClInclude Include="Src\KLInput.h" />
-    <ClInclude Include="Src\KLModel.h" />
-    <ClInclude Include="Src\KLSprite.h" />
-    <ClInclude Include="Src\KLTexture.h" />
+    <ClInclude Include="Inc\HirakawaLib.h" />
+    <ClInclude Include="Src\HLAudio.h" />
+    <ClInclude Include="Src\HLCommon.h" />
+    <ClInclude Include="Src\HLDirect3D.h" />
+    <ClInclude Include="Src\HLFrameRate.h" />
+    <ClInclude Include="Src\HLInput.h" />
+    <ClInclude Include="Src\HLModel.h" />
+    <ClInclude Include="Src\HLSprite.h" />
+    <ClInclude Include="Src\HLTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLInput.cpp
+//		HLInput.cpp
 //
 //		@brief	KoudoLib 入力管理
 //		@author	Yasushi Hirakawa
@@ -8,7 +8,7 @@
 //
 ****************************************************************************************************/
 
-#include "KLInput.h"
+#include "HLInput.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -17,14 +17,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLInput::KLInput()
+HLInput::HLInput()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLInput::~KLInput()
+HLInput::~HLInput()
 {
 }
 
@@ -33,7 +33,7 @@ KLInput::~KLInput()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::Init()
+bool HLInput::Init()
 {
 	bool ret = true;
 
@@ -77,7 +77,7 @@ bool KLInput::Init()
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLInput::Destroy()
+void HLInput::Destroy()
 {
 	SAFE_DELETE(p_game_pad_);
 	SAFE_DELETE(p_mouse_);
@@ -87,7 +87,7 @@ void KLInput::Destroy()
 /*---------------------------------------------------------------------------------------------
 //	@brief	更新
 ---------------------------------------------------------------------------------------------*/
-void KLInput::Update()
+void HLInput::Update()
 {
 	// キーボードの状態を更新
 	prev_keyboard_state_ = keyboard_state_;
@@ -111,7 +111,7 @@ void KLInput::Update()
 //	@param	wParam		メッセージに関する追加情報
 //	@param	lParam		メッセージに関する追加情報
 ---------------------------------------------------------------------------------------------*/
-void KLInput::SetWindowInputCallback(HWND hWnd, unsigned int msg, unsigned int wParam, LONG lParam)
+void HLInput::SetWindowInputCallback(HWND hWnd, unsigned int msg, unsigned int wParam, LONG lParam)
 {
 	switch (msg)
 	{
@@ -149,7 +149,7 @@ void KLInput::SetWindowInputCallback(HWND hWnd, unsigned int msg, unsigned int w
 //	@param	Keyboard::Keys Key		：キー情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPressKeyboard(Keyboard::Keys Key)
+bool HLInput::IsPressKeyboard(Keyboard::Keys Key)
 {
 	return keyboard_state_.IsKeyDown(Key);
 }
@@ -159,7 +159,7 @@ bool KLInput::IsPressKeyboard(Keyboard::Keys Key)
 //	@param	Keyboard::Keys Key		：キー情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPushKeyboard(Keyboard::Keys Key)
+bool HLInput::IsPushKeyboard(Keyboard::Keys Key)
 {
 	return (prev_keyboard_state_.IsKeyUp(Key) && keyboard_state_.IsKeyDown(Key));
 }
@@ -169,24 +169,24 @@ bool KLInput::IsPushKeyboard(Keyboard::Keys Key)
 //	@param	Keyboard::Keys Key		：キー情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsReleaseKeyboard(Keyboard::Keys Key)
+bool HLInput::IsReleaseKeyboard(Keyboard::Keys Key)
 {
 	return (prev_keyboard_state_.IsKeyDown(Key) && keyboard_state_.IsKeyUp(Key));
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	マウス：ボタンが押されたか？(押しっぱなし有効)
-//	@param	KLMOUSE_BUTTONS Button	：ボタン情報
+//	@param	HLMOUSE_BUTTONS Button	：ボタン情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPressMouse(KLMOUSE_BUTTONS Button)
+bool HLInput::IsPressMouse(HLMOUSE_BUTTONS Button)
 {
 	bool ret = false;
 
 	switch (Button) {
-	case KLMOUSE_L: ret = mouse_state_.leftButton; break;
-	case KLMOUSE_R: ret = mouse_state_.rightButton; break;
-	case KLMOUSE_CENTER: ret = mouse_state_.middleButton; break;
+	case HLMOUSE_L: ret = mouse_state_.leftButton; break;
+	case HLMOUSE_R: ret = mouse_state_.rightButton; break;
+	case HLMOUSE_CENTER: ret = mouse_state_.middleButton; break;
 	}
 	
 	return ret;
@@ -194,17 +194,17 @@ bool KLInput::IsPressMouse(KLMOUSE_BUTTONS Button)
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	マウス：ボタンが押されたか？(押しっぱなし無効)
-//	@param	KLMOUSE_BUTTONS Button	：ボタン情報
+//	@param	HLMOUSE_BUTTONS Button	：ボタン情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPushMouse(KLMOUSE_BUTTONS Button)
+bool HLInput::IsPushMouse(HLMOUSE_BUTTONS Button)
 {
 	bool ret = false;
 
 	switch (Button) {
-	case KLMOUSE_L: ret = (mouse_state_.leftButton && !prev_mouse_state_.leftButton); break;
-	case KLMOUSE_R: ret = (mouse_state_.rightButton && !prev_mouse_state_.rightButton); break;
-	case KLMOUSE_CENTER: ret = (mouse_state_.middleButton && !prev_mouse_state_.middleButton); break;
+	case HLMOUSE_L: ret = (mouse_state_.leftButton && !prev_mouse_state_.leftButton); break;
+	case HLMOUSE_R: ret = (mouse_state_.rightButton && !prev_mouse_state_.rightButton); break;
+	case HLMOUSE_CENTER: ret = (mouse_state_.middleButton && !prev_mouse_state_.middleButton); break;
 	}
 
 	return ret;
@@ -212,17 +212,17 @@ bool KLInput::IsPushMouse(KLMOUSE_BUTTONS Button)
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	マウス：ボタンが離されたか
-//	@param	KLMOUSE_BUTTONS Button	：ボタン情報
+//	@param	HLMOUSE_BUTTONS Button	：ボタン情報
 //	@retval	bool					：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsReleaseMouse(KLMOUSE_BUTTONS Button)
+bool HLInput::IsReleaseMouse(HLMOUSE_BUTTONS Button)
 {
 	bool ret = false;
 
 	switch (Button) {
-	case KLMOUSE_L: ret = (!mouse_state_.leftButton && prev_mouse_state_.leftButton); break;
-	case KLMOUSE_R: ret = (!mouse_state_.rightButton && prev_mouse_state_.rightButton); break;
-	case KLMOUSE_CENTER: ret = (!mouse_state_.middleButton && prev_mouse_state_.middleButton); break;
+	case HLMOUSE_L: ret = (!mouse_state_.leftButton && prev_mouse_state_.leftButton); break;
+	case HLMOUSE_R: ret = (!mouse_state_.rightButton && prev_mouse_state_.rightButton); break;
+	case HLMOUSE_CENTER: ret = (!mouse_state_.middleButton && prev_mouse_state_.middleButton); break;
 	}
 
 	return ret;
@@ -232,7 +232,7 @@ bool KLInput::IsReleaseMouse(KLMOUSE_BUTTONS Button)
 //	@brief	マウス：座標取得
 //	@retval	MOUSE_POSITION	：マウス座標
 ---------------------------------------------------------------------------------------------*/
-MOUSE_POSITION KLInput::GetMousePosition()
+MOUSE_POSITION HLInput::GetMousePosition()
 {
 	MOUSE_POSITION pos;
 	pos.x = mouse_state_.x;
@@ -244,7 +244,7 @@ MOUSE_POSITION KLInput::GetMousePosition()
 //	@brief	マウス：座標取得
 //	@retval	int		：ホイールの値
 ---------------------------------------------------------------------------------------------*/
-int KLInput::GetMouseScrollWheel()
+int HLInput::GetMouseScrollWheel()
 {
 	return mouse_state_.scrollWheelValue;
 }
@@ -252,10 +252,10 @@ int KLInput::GetMouseScrollWheel()
 /*---------------------------------------------------------------------------------------------
 //	@brief	ゲームパッド：ボタンが押されたか？(押しっぱなし有効)
 //	@param	int					Number	：ゲームパッド番号
-//	@param	KLGAMEPAD_BUTTONS	Button	：ボタン情報
+//	@param	HLGAMEPAD_BUTTONS	Button	：ボタン情報
 //	@retval	bool						：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPressGamePad(int Number, KLGAMEPAD_BUTTONS Button)
+bool HLInput::IsPressGamePad(int Number, HLGAMEPAD_BUTTONS Button)
 {
 	bool ret = false;
 
@@ -265,28 +265,28 @@ bool KLInput::IsPressGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 		}
 
 		switch (Button) {
-		case KLGAMEPAD_A:		ret = game_pad_state_[Number].buttons.a;		break;
-		case KLGAMEPAD_B:		ret = game_pad_state_[Number].buttons.b;		break;
-		case KLGAMEPAD_X:		ret = game_pad_state_[Number].buttons.x;		break;
-		case KLGAMEPAD_Y:		ret = game_pad_state_[Number].buttons.y;		break;
-		case KLGAMEPAD_LB:		ret = game_pad_state_[Number].buttons.leftShoulder;	break;
-		case KLGAMEPAD_RB:		ret = game_pad_state_[Number].buttons.rightShoulder; break;
-		case KLGAMEPAD_BACK:	ret = game_pad_state_[Number].buttons.back;		break;
-		case KLGAMEPAD_START:	ret = game_pad_state_[Number].buttons.start;	break;
-		case KLGAMEPAD_D_UP:	ret = game_pad_state_[Number].dpad.up;			break;
-		case KLGAMEPAD_D_DOWN:	ret = game_pad_state_[Number].dpad.down;		break;
-		case KLGAMEPAD_D_LEFT:	ret = game_pad_state_[Number].dpad.left;		break;
-		case KLGAMEPAD_D_RIGHT: ret = game_pad_state_[Number].dpad.right;		break;
-		case KLGAMEPAD_L_STICK_BUTTON:	ret = game_pad_state_[Number].buttons.leftStick;	break;
-		case KLGAMEPAD_L_STICK_UP:		ret = (game_pad_state_[Number].thumbSticks.leftY > 0.5F);	break;
-		case KLGAMEPAD_L_STICK_DOWN:	ret = (game_pad_state_[Number].thumbSticks.leftY < -0.5F);	break;
-		case KLGAMEPAD_L_STICK_LEFT:	ret = (game_pad_state_[Number].thumbSticks.leftX < -0.5F);	break;
-		case KLGAMEPAD_L_STICK_RIGHT:	ret = (game_pad_state_[Number].thumbSticks.leftX > 0.5F);	break;
-		case KLGAMEPAD_R_STICK_BUTTON:	ret = game_pad_state_[Number].buttons.rightStick;	break;
-		case KLGAMEPAD_R_STICK_UP:		ret = (game_pad_state_[Number].thumbSticks.rightY > 0.5F);	break;
-		case KLGAMEPAD_R_STICK_DOWN:	ret = (game_pad_state_[Number].thumbSticks.rightY < -0.5F); break;
-		case KLGAMEPAD_R_STICK_LEFT:	ret = (game_pad_state_[Number].thumbSticks.rightX < -0.5F); break;
-		case KLGAMEPAD_R_STICK_RIGHT:	ret = (game_pad_state_[Number].thumbSticks.rightX > 0.5F);	break;
+		case HLGAMEPAD_A:		ret = game_pad_state_[Number].buttons.a;		break;
+		case HLGAMEPAD_B:		ret = game_pad_state_[Number].buttons.b;		break;
+		case HLGAMEPAD_X:		ret = game_pad_state_[Number].buttons.x;		break;
+		case HLGAMEPAD_Y:		ret = game_pad_state_[Number].buttons.y;		break;
+		case HLGAMEPAD_LB:		ret = game_pad_state_[Number].buttons.leftShoulder;	break;
+		case HLGAMEPAD_RB:		ret = game_pad_state_[Number].buttons.rightShoulder; break;
+		case HLGAMEPAD_BACK:	ret = game_pad_state_[Number].buttons.back;		break;
+		case HLGAMEPAD_START:	ret = game_pad_state_[Number].buttons.start;	break;
+		case HLGAMEPAD_D_UP:	ret = game_pad_state_[Number].dpad.up;			break;
+		case HLGAMEPAD_D_DOWN:	ret = game_pad_state_[Number].dpad.down;		break;
+		case HLGAMEPAD_D_LEFT:	ret = game_pad_state_[Number].dpad.left;		break;
+		case HLGAMEPAD_D_RIGHT: ret = game_pad_state_[Number].dpad.right;		break;
+		case HLGAMEPAD_L_STICK_BUTTON:	ret = game_pad_state_[Number].buttons.leftStick;	break;
+		case HLGAMEPAD_L_STICK_UP:		ret = (game_pad_state_[Number].thumbSticks.leftY > 0.5F);	break;
+		case HLGAMEPAD_L_STICK_DOWN:	ret = (game_pad_state_[Number].thumbSticks.leftY < -0.5F);	break;
+		case HLGAMEPAD_L_STICK_LEFT:	ret = (game_pad_state_[Number].thumbSticks.leftX < -0.5F);	break;
+		case HLGAMEPAD_L_STICK_RIGHT:	ret = (game_pad_state_[Number].thumbSticks.leftX > 0.5F);	break;
+		case HLGAMEPAD_R_STICK_BUTTON:	ret = game_pad_state_[Number].buttons.rightStick;	break;
+		case HLGAMEPAD_R_STICK_UP:		ret = (game_pad_state_[Number].thumbSticks.rightY > 0.5F);	break;
+		case HLGAMEPAD_R_STICK_DOWN:	ret = (game_pad_state_[Number].thumbSticks.rightY < -0.5F); break;
+		case HLGAMEPAD_R_STICK_LEFT:	ret = (game_pad_state_[Number].thumbSticks.rightX < -0.5F); break;
+		case HLGAMEPAD_R_STICK_RIGHT:	ret = (game_pad_state_[Number].thumbSticks.rightX > 0.5F);	break;
 		}
 
 	} while (0);
@@ -297,10 +297,10 @@ bool KLInput::IsPressGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 /*---------------------------------------------------------------------------------------------
 //	@brief	マウス：ボタンが押されたか？(押しっぱなし無効)
 //	@param	int					Number	：ゲームパッド番号
-//	@param	KLGAMEPAD_BUTTONS	Button	：ボタン情報
+//	@param	HLGAMEPAD_BUTTONS	Button	：ボタン情報
 //	@retval	bool						：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsPushGamePad(int Number, KLGAMEPAD_BUTTONS Button)
+bool HLInput::IsPushGamePad(int Number, HLGAMEPAD_BUTTONS Button)
 {
 	bool ret = false;
 
@@ -310,77 +310,77 @@ bool KLInput::IsPushGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 		}
 
 		switch (Button) {
-		case KLGAMEPAD_A:
+		case HLGAMEPAD_A:
 			ret = (!game_pad_state_[Number].buttons.a && prev_game_pad_state_[Number].buttons.a);
 			break;
-		case KLGAMEPAD_B:
+		case HLGAMEPAD_B:
 			ret = (!game_pad_state_[Number].buttons.b && prev_game_pad_state_[Number].buttons.b);
 			break;
-		case KLGAMEPAD_X:
+		case HLGAMEPAD_X:
 			ret = (!game_pad_state_[Number].buttons.x && prev_game_pad_state_[Number].buttons.x);
 			break;
-		case KLGAMEPAD_Y:
+		case HLGAMEPAD_Y:
 			ret = (!game_pad_state_[Number].buttons.y && prev_game_pad_state_[Number].buttons.y);
 			break;
-		case KLGAMEPAD_LB:
+		case HLGAMEPAD_LB:
 			ret = (!game_pad_state_[Number].buttons.leftShoulder && prev_game_pad_state_[Number].buttons.leftShoulder);
 			break;
-		case KLGAMEPAD_RB:
+		case HLGAMEPAD_RB:
 			ret = (!game_pad_state_[Number].buttons.rightShoulder && prev_game_pad_state_[Number].buttons.rightShoulder);
 			break;
-		case KLGAMEPAD_BACK:
+		case HLGAMEPAD_BACK:
 			ret = (!game_pad_state_[Number].buttons.back && prev_game_pad_state_[Number].buttons.back);
 			break;
-		case KLGAMEPAD_START:
+		case HLGAMEPAD_START:
 			ret = (!game_pad_state_[Number].buttons.start && prev_game_pad_state_[Number].buttons.start);
 			break;
-		case KLGAMEPAD_D_UP:
+		case HLGAMEPAD_D_UP:
 			ret = (!game_pad_state_[Number].dpad.up && prev_game_pad_state_[Number].dpad.up);
 			break;
-		case KLGAMEPAD_D_DOWN:
+		case HLGAMEPAD_D_DOWN:
 			ret = (!game_pad_state_[Number].dpad.down && prev_game_pad_state_[Number].dpad.down);
 			break;
-		case KLGAMEPAD_D_LEFT:
+		case HLGAMEPAD_D_LEFT:
 			ret = (!game_pad_state_[Number].dpad.left && prev_game_pad_state_[Number].dpad.left);
 			break;
-		case KLGAMEPAD_D_RIGHT:
+		case HLGAMEPAD_D_RIGHT:
 			ret = (!game_pad_state_[Number].dpad.right && prev_game_pad_state_[Number].dpad.right);
 			break;
-		case KLGAMEPAD_L_STICK_BUTTON:
+		case HLGAMEPAD_L_STICK_BUTTON:
 			ret = (!game_pad_state_[Number].buttons.leftStick && prev_game_pad_state_[Number].buttons.leftStick);
 			break;
-		case KLGAMEPAD_L_STICK_UP:
+		case HLGAMEPAD_L_STICK_UP:
 			ret = (game_pad_state_[Number].thumbSticks.leftY < kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftY > kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_DOWN:
+		case HLGAMEPAD_L_STICK_DOWN:
 			ret = (game_pad_state_[Number].thumbSticks.leftY > -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftY < -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_LEFT:
+		case HLGAMEPAD_L_STICK_LEFT:
 			ret = (game_pad_state_[Number].thumbSticks.leftX > -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftX < -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_RIGHT:
+		case HLGAMEPAD_L_STICK_RIGHT:
 			ret = (game_pad_state_[Number].thumbSticks.leftX < kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftX > kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_BUTTON:
+		case HLGAMEPAD_R_STICK_BUTTON:
 			ret = (!game_pad_state_[Number].buttons.rightStick && prev_game_pad_state_[Number].buttons.rightStick);
 			break;
-		case KLGAMEPAD_R_STICK_UP:
+		case HLGAMEPAD_R_STICK_UP:
 			ret = (game_pad_state_[Number].thumbSticks.rightY < kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightY > kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_DOWN:
+		case HLGAMEPAD_R_STICK_DOWN:
 			ret = (game_pad_state_[Number].thumbSticks.rightY > -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightY < -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_LEFT:
+		case HLGAMEPAD_R_STICK_LEFT:
 			ret = (game_pad_state_[Number].thumbSticks.rightX > -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightX < -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_RIGHT:
+		case HLGAMEPAD_R_STICK_RIGHT:
 			ret = (game_pad_state_[Number].thumbSticks.rightX < kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightX > kGamePadStickButtonRegion);
 			break;
@@ -394,10 +394,10 @@ bool KLInput::IsPushGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 /*---------------------------------------------------------------------------------------------
 //	@brief	ゲームパッド：ボタンが離されたか
 //	@param	int					Number	：ゲームパッド番号
-//	@param	KLGAMEPAD_BUTTONS	Button	：ボタン情報
+//	@param	HLGAMEPAD_BUTTONS	Button	：ボタン情報
 //	@retval	bool						：入力判定結果
 ---------------------------------------------------------------------------------------------*/
-bool KLInput::IsReleaseGamePad(int Number, KLGAMEPAD_BUTTONS Button)
+bool HLInput::IsReleaseGamePad(int Number, HLGAMEPAD_BUTTONS Button)
 {
 	bool ret = false;
 
@@ -407,77 +407,77 @@ bool KLInput::IsReleaseGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 		}
 
 		switch (Button) {
-		case KLGAMEPAD_A:
+		case HLGAMEPAD_A:
 			ret = (game_pad_state_[Number].buttons.a && !prev_game_pad_state_[Number].buttons.a);
 			break;
-		case KLGAMEPAD_B:
+		case HLGAMEPAD_B:
 			ret = (game_pad_state_[Number].buttons.b && !prev_game_pad_state_[Number].buttons.b);
 			break;
-		case KLGAMEPAD_X:
+		case HLGAMEPAD_X:
 			ret = (game_pad_state_[Number].buttons.x && !prev_game_pad_state_[Number].buttons.x);
 			break;
-		case KLGAMEPAD_Y:
+		case HLGAMEPAD_Y:
 			ret = (game_pad_state_[Number].buttons.y && !prev_game_pad_state_[Number].buttons.y);
 			break;
-		case KLGAMEPAD_LB:
+		case HLGAMEPAD_LB:
 			ret = (game_pad_state_[Number].buttons.leftShoulder && !prev_game_pad_state_[Number].buttons.leftShoulder);
 			break;
-		case KLGAMEPAD_RB:
+		case HLGAMEPAD_RB:
 			ret = (game_pad_state_[Number].buttons.rightShoulder && !prev_game_pad_state_[Number].buttons.rightShoulder);
 			break;
-		case KLGAMEPAD_BACK:
+		case HLGAMEPAD_BACK:
 			ret = (game_pad_state_[Number].buttons.back && !prev_game_pad_state_[Number].buttons.back);
 			break;
-		case KLGAMEPAD_START:
+		case HLGAMEPAD_START:
 			ret = (game_pad_state_[Number].buttons.start && !prev_game_pad_state_[Number].buttons.start);
 			break;
-		case KLGAMEPAD_D_UP:
+		case HLGAMEPAD_D_UP:
 			ret = (game_pad_state_[Number].dpad.up && !prev_game_pad_state_[Number].dpad.up);
 			break;
-		case KLGAMEPAD_D_DOWN:
+		case HLGAMEPAD_D_DOWN:
 			ret = (game_pad_state_[Number].dpad.down && !prev_game_pad_state_[Number].dpad.down);
 			break;
-		case KLGAMEPAD_D_LEFT:
+		case HLGAMEPAD_D_LEFT:
 			ret = (game_pad_state_[Number].dpad.left && !prev_game_pad_state_[Number].dpad.left);
 			break;
-		case KLGAMEPAD_D_RIGHT:
+		case HLGAMEPAD_D_RIGHT:
 			ret = (game_pad_state_[Number].dpad.right && !prev_game_pad_state_[Number].dpad.right);
 			break;
-		case KLGAMEPAD_L_STICK_BUTTON:
+		case HLGAMEPAD_L_STICK_BUTTON:
 			ret = (!game_pad_state_[Number].buttons.leftStick && prev_game_pad_state_[Number].buttons.leftStick);
 			break;
-		case KLGAMEPAD_L_STICK_UP:
+		case HLGAMEPAD_L_STICK_UP:
 			ret = (game_pad_state_[Number].thumbSticks.leftY > kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftY < kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_DOWN:
+		case HLGAMEPAD_L_STICK_DOWN:
 			ret = (game_pad_state_[Number].thumbSticks.leftY < -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftY > -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_LEFT:
+		case HLGAMEPAD_L_STICK_LEFT:
 			ret = (game_pad_state_[Number].thumbSticks.leftX < -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftX > -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_L_STICK_RIGHT:
+		case HLGAMEPAD_L_STICK_RIGHT:
 			ret = (game_pad_state_[Number].thumbSticks.leftX > kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.leftX < kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_BUTTON:
+		case HLGAMEPAD_R_STICK_BUTTON:
 			ret = (!game_pad_state_[Number].buttons.rightStick && prev_game_pad_state_[Number].buttons.rightStick);
 			break;
-		case KLGAMEPAD_R_STICK_UP:
+		case HLGAMEPAD_R_STICK_UP:
 			ret = (game_pad_state_[Number].thumbSticks.rightY > kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightY < kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_DOWN:
+		case HLGAMEPAD_R_STICK_DOWN:
 			ret = (game_pad_state_[Number].thumbSticks.rightY < -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightY > -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_LEFT:
+		case HLGAMEPAD_R_STICK_LEFT:
 			ret = (game_pad_state_[Number].thumbSticks.rightX < -kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightX > -kGamePadStickButtonRegion);
 			break;
-		case KLGAMEPAD_R_STICK_RIGHT:
+		case HLGAMEPAD_R_STICK_RIGHT:
 			ret = (game_pad_state_[Number].thumbSticks.rightX > kGamePadStickButtonRegion
 					&& prev_game_pad_state_[Number].thumbSticks.rightX < kGamePadStickButtonRegion);
 			break;
@@ -493,7 +493,7 @@ bool KLInput::IsReleaseGamePad(int Number, KLGAMEPAD_BUTTONS Button)
 //	@param	int		Number	：ゲームパッド番号
 //	@retval	Vector2			：スティック情報
 ---------------------------------------------------------------------------------------------*/
-Vector2 KLInput::GetGamePadLeftStick(int Number)
+Vector2 HLInput::GetGamePadLeftStick(int Number)
 {
 	Vector2 stick = Vector2(0.0F, 0.0F);
 
@@ -516,7 +516,7 @@ Vector2 KLInput::GetGamePadLeftStick(int Number)
 //	@param	int		Number	：ゲームパッド番号
 //	@retval	Vector2			：スティック情報
 ---------------------------------------------------------------------------------------------*/
-Vector2 KLInput::GetGamePadRightStick(int Number)
+Vector2 HLInput::GetGamePadRightStick(int Number)
 {
 	Vector2 stick = Vector2(0.0F, 0.0F);
 
@@ -539,7 +539,7 @@ Vector2 KLInput::GetGamePadRightStick(int Number)
 //	@param	int		Number	：ゲームパッド番号
 //	@retval	float			：トリガー情報
 ---------------------------------------------------------------------------------------------*/
-float KLInput::GetGamePadLeftTrigger(int Number)
+float HLInput::GetGamePadLeftTrigger(int Number)
 {
 	float trigger = 0.0F;
 
@@ -561,7 +561,7 @@ float KLInput::GetGamePadLeftTrigger(int Number)
 //	@param	int		Number	：ゲームパッド番号
 //	@retval	float			：トリガー情報
 ---------------------------------------------------------------------------------------------*/
-float KLInput::GetGamePadRightTrigger(int Number)
+float HLInput::GetGamePadRightTrigger(int Number)
 {
 	float trigger = 0.0F;
 

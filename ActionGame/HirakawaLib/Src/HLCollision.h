@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLCollision.h
+//		HLCollision.h
 //
 //		@brief	KoudoLib コリジョン管理
 //		@author	Yasushi Hirakawa
@@ -8,28 +8,28 @@
 //
 ****************************************************************************************************/
 
-#ifndef __KLCOLLISION_H__
-#define __KLCOLLISION_H__
+#ifndef __HLCOLLISION_H__
+#define __HLCOLLISION_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
+#include "HLCommon.h"
 
 //---------------------------------------------------------------------------------------------
 //	struct
 //--------------------------------------------------------------------------------------------- 
 
 // 球コリジョン
-struct KLCollisionSphere
+struct HLCollisionSphere
 {
 	BoundingSphere		sphere;		// 球情報
 	ContainmentType		collision;	// コリジョン情報
 };
 
 // 箱コリジョン
-struct KLCollisionBox
+struct HLCollisionBox
 {
 	BoundingOrientedBox box;		// 箱情報
 	ContainmentType		collision;	// コリジョン情報
@@ -39,11 +39,11 @@ struct KLCollisionBox
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLCollision
+class HLCollision
 {
 public:
-	KLCollision();
-	~KLCollision();
+	HLCollision();
+	~HLCollision();
 
 	BOOL Init();				// 初期化
 	VOID Destroy();				// 破棄
@@ -54,4 +54,4 @@ private:
 };
 
 
-#endif //__KLAUDIO_H__
+#endif //__HLAUDIO_H__

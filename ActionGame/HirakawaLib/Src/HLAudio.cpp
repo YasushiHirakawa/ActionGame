@@ -1,14 +1,14 @@
 /****************************************************************************************************
 //
-//		KLAudio.h
+//		HLAudio.h
 //
-//		@brief	KoudoLib サウンド管理
+//		@brief	HirakawaLib サウンド管理
 //		@author	Yasushi Hirakawa
 //		@date	2016/08/23
 //
 ****************************************************************************************************/
 
-#include "KLAudio.h"
+#include "HLAudio.h"
 
 //---------------------------------------------------------------------------------------------
 //	Method
@@ -16,14 +16,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLAudio::KLAudio()
+HLAudio::HLAudio()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLAudio::~KLAudio()
+HLAudio::~HLAudio()
 {
 }
 
@@ -32,7 +32,7 @@ KLAudio::~KLAudio()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLAudio::Init()
+bool HLAudio::Init()
 {
 	bool	ret = true;
 
@@ -61,10 +61,10 @@ bool KLAudio::Init()
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLAudio::Destroy()
+void HLAudio::Destroy()
 {
 	// リストデータ全削除
-	LPKLAudioDataList	p_list = p_audio_data_list_top_,
+	LPHLAudioDataList	p_list = p_audio_data_list_top_,
 						p_delete_list = NULL;
 	while (p_list != NULL) {
 		p_delete_list = p_list;
@@ -74,7 +74,7 @@ void KLAudio::Destroy()
 		wchar_t	warning_message[kStrMax];
 		wcscpy_s(warning_message, L"解放されていないオーディオデータがあったので強制解放しました。\n");
 		wcscat_s(warning_message, p_delete_list->p_audio_data->p_file_name);
-		MessageBox(KLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
+		MessageBox(HLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
 #endif
 
 		SAFE_DELETE(p_delete_list->p_audio_data);
@@ -89,7 +89,7 @@ void KLAudio::Destroy()
 /*---------------------------------------------------------------------------------------------
 //	@brief	更新
 ---------------------------------------------------------------------------------------------*/
-void KLAudio::Update()
+void HLAudio::Update()
 {
 	if (!p_audio_engine_->Update()) {
 		if (p_audio_engine_->IsCriticalError()) {
@@ -104,17 +104,17 @@ void KLAudio::Update()
 /*---------------------------------------------------------------------------------------------
 //	@brief	オーディオデータ作成
 //	@param	const wchar_t*		pFilename		：ファイル名
-//	@param	LPKLTextureData*	ppTextureData	：テクスチャデータ格納先ポインタ
+//	@param	LPHLTextureData*	ppTextureData	：テクスチャデータ格納先ポインタ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLAudio::CreateAudioDataFromWave(const wchar_t* pFilename, LPKLAudioData* ppAudioData)
+bool HLAudio::CreateAudioDataFromWave(const wchar_t* pFilename, LPHLAudioData* ppAudioData)
 {
 	bool				ret = true;
-	LPKLAudioDataList	p_list = NULL;
+	LPHLAudioDataList	p_list = NULL;
 
-	LPKLAudioData		p_audio_data = NULL;
-	LPKLAudioDataList	p_audio_data_list = NULL;
+	LPHLAudioData		p_audio_data = NULL;
+	LPHLAudioDataList	p_audio_data_list = NULL;
 
 	do {
 
@@ -138,7 +138,7 @@ bool KLAudio::CreateAudioDataFromWave(const wchar_t* pFilename, LPKLAudioData* p
 		}
 
 		// オーディオデータリストのメモリ確保
-		p_audio_data_list = new KLAudioDataList;
+		p_audio_data_list = new HLAudioDataList;
 		if (p_audio_data_list == NULL) {
 			ret = false;
 			break;
@@ -154,7 +154,7 @@ bool KLAudio::CreateAudioDataFromWave(const wchar_t* pFilename, LPKLAudioData* p
 		}
 
 		// オーディオデータのメモリ確保
-		p_audio_data = new KLAudioData;
+		p_audio_data = new HLAudioData;
 		if (p_audio_data == NULL) {
 			ret = false;
 			break;
@@ -202,16 +202,16 @@ bool KLAudio::CreateAudioDataFromWave(const wchar_t* pFilename, LPKLAudioData* p
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	オーディオデータ解放
-//	@param	LPKLAudioData pAudioData	：解放するオーディオデータ
+//	@param	LPHLAudioData pAudioData	：解放するオーディオデータ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLAudio::ReleaseAudioData(LPKLAudioData pAudioData)
+bool HLAudio::ReleaseAudioData(LPHLAudioData pAudioData)
 {
 	bool	ret = false;
 
 	// テクスチャデータリストにテクスチャデータがあるかチェック
-	LPKLAudioDataList	p_list = p_audio_data_list_top_,
+	LPHLAudioDataList	p_list = p_audio_data_list_top_,
 						p_prev_list = NULL;
 	while (p_list != NULL) {
 		// 同名のオーディオデータがあったら参照カウンタをデクリメントして、

@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************************
 //
-//		KLCommon.cpp
+//		HLCommon.cpp
 //
 //		@brief	KoudoLib 共通定義
 //		@author	Yasushi Hirakawa
@@ -8,13 +8,13 @@
 //
 ****************************************************************************************************/
 
-#include "KLCommon.h"
+#include "HLCommon.h"
 
 //---------------------------------------------------------------------------------------------
 //	Static Member
 //---------------------------------------------------------------------------------------------
-wchar_t			KLCommon::window_name_[kStrMax];
-HWND			KLCommon::window_handle_;
+wchar_t			HLCommon::window_name_[kStrMax];
+HWND			HLCommon::window_handle_;
 
 
 //---------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ HWND			KLCommon::window_handle_;
 //	@param	mbStr	変換したいマルチバイト文字列
 //	@param	wStr	変換後の格納用ワイド文字列
 ---------------------------------------------------------------------------------------------*/
-void KLCommon::MultibyteToWide(const char* mbStr, wchar_t* wStr)
+void HLCommon::MultibyteToWide(const char* mbStr, wchar_t* wStr)
 {
 	size_t	ret;
 	wchar_t	w_str[kStrMax];
@@ -42,7 +42,7 @@ void KLCommon::MultibyteToWide(const char* mbStr, wchar_t* wStr)
 //
 //	@param	HWND hWnd	：ウィンドウハンドル
 ---------------------------------------------------------------------------------------------*/
-void KLCommon::SetWindowHandle(HWND hWnd)
+void HLCommon::SetWindowHandle(HWND hWnd)
 {
 	// ウィンドウハンドルの設定
 	window_handle_ = hWnd;

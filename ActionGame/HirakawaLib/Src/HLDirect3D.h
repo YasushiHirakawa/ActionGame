@@ -1,31 +1,31 @@
 ﻿/****************************************************************************************************
 //
-//		KLDirect3D.h
+//		HLDirect3D.h
 //
-//		@brief	KoudoLib Direct3DDeviceの定義
+//		@brief	HirakawaLib Direct3DDeviceの定義
 //		@author	Yasushi Hirakawa
 //		@date	2016/08/23
 //
 ****************************************************************************************************/
 
-#ifndef __KLDIRECT3D_H__
-#define __KLDIRECT3D_H__
+#ifndef __HLDIRECT3D_H__
+#define __HLDIRECT3D_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
+#include "HLCommon.h"
 
 
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLDirect3D
+class HLDirect3D
 {
 public:
-	KLDirect3D();
-	~KLDirect3D();
+	HLDirect3D();
+	~HLDirect3D();
 
 	bool Init(HWND hWnd);		// 初期化
 	void Destroy();				// 破棄
@@ -64,4 +64,4 @@ private:
 };
 
 
-#endif //__KLDIRECT3D_H__
+#endif //__HLDIRECT3D_H__

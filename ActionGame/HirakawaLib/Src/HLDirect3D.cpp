@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************************
 //
-//		KLDirect3D.cpp
+//		HLDirect3D.cpp
 //
 //		@brief	KoudoLib Direct3DDeviceの定義
 //		@author	Yasushi Hirakawa
@@ -8,7 +8,7 @@
 //
 ****************************************************************************************************/
 
-#include "KLDirect3D.h"
+#include "HLDirect3D.h"
 
 //---------------------------------------------------------------------------------------------
 //	Method
@@ -16,14 +16,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLDirect3D::KLDirect3D()
+HLDirect3D::HLDirect3D()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLDirect3D::~KLDirect3D()
+HLDirect3D::~HLDirect3D()
 {
 }
 
@@ -32,7 +32,7 @@ KLDirect3D::~KLDirect3D()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLDirect3D::Init(HWND hWnd)
+bool HLDirect3D::Init(HWND hWnd)
 {
 	bool	ret = true;
 	HRESULT hr	= S_OK;
@@ -159,7 +159,7 @@ bool KLDirect3D::Init(HWND hWnd)
 		}
 
 		// ベーシックエフェクトの作成
-		p_basic_effect_ = new BasicEffect(KLDirect3D::GetDevice());
+		p_basic_effect_ = new BasicEffect(HLDirect3D::GetDevice());
 		if (p_basic_effect_ == NULL) {
 			ret = false;
 			break;
@@ -195,7 +195,7 @@ bool KLDirect3D::Init(HWND hWnd)
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLDirect3D::Destroy()
+void HLDirect3D::Destroy()
 {
 	SAFE_DELETE(p_common_states_);
 	SAFE_RELEASE(p_vertex_input_layout_);
@@ -212,7 +212,7 @@ void KLDirect3D::Destroy()
 /*---------------------------------------------------------------------------------------------
 //	@brief	描画開始
 ---------------------------------------------------------------------------------------------*/
-void KLDirect3D::BeginScene()
+void HLDirect3D::BeginScene()
 {
 	p_d3d_device_context_->ClearRenderTargetView(p_render_target_view_, Colors::MidnightBlue);
 	p_d3d_device_context_->ClearDepthStencilView(p_depth_stencil_view_, D3D11_CLEAR_DEPTH, 1.0f, 0);
@@ -221,7 +221,7 @@ void KLDirect3D::BeginScene()
 /*---------------------------------------------------------------------------------------------
 //	@brief	描画終了
 ---------------------------------------------------------------------------------------------*/
-void KLDirect3D::EndScene()
+void HLDirect3D::EndScene()
 {
 	p_swap_chain_->Present(0, 0);
 }
@@ -234,7 +234,7 @@ void KLDirect3D::EndScene()
 //	@param	Vector3 Up			：カメラの上方向の向き
 //	@retval	Matrix				：カメラのビュー行列
 ---------------------------------------------------------------------------------------------*/
-Matrix KLDirect3D::SetCameraViewMatrix(Vector3 Position, Vector3 Lookat, Vector3 Up)
+Matrix HLDirect3D::SetCameraViewMatrix(Vector3 Position, Vector3 Lookat, Vector3 Up)
 {
 	Matrix	view_mat;
 	Vector3	position = XMVectorSet(Position.x, Position.y, Position.z, 0.0F),
@@ -254,7 +254,7 @@ Matrix KLDirect3D::SetCameraViewMatrix(Vector3 Position, Vector3 Lookat, Vector3
 //	@param	float			Far		：ファークリップ距離
 //	@retval	Matrix	：カメラの射影行列
 ---------------------------------------------------------------------------------------------*/
-Matrix KLDirect3D::SetCameraProjectionMatrix(unsigned int Width, unsigned int Height, float Near, float Far)
+Matrix HLDirect3D::SetCameraProjectionMatrix(unsigned int Width, unsigned int Height, float Near, float Far)
 {
 	Matrix	projection_mat;
 	projection_mat = XMMatrixPerspectiveFovLH(XM_PIDIV4, (float)Width / (float)Height, Near, Far);

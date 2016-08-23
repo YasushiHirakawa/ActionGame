@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLInput.h
+//		HLInput.h
 //
 //		@brief	KoudoLib 入力管理
 //		@author	Yasushi Hirakawa
@@ -8,54 +8,54 @@
 //
 ****************************************************************************************************/
 
-#ifndef __KLINPUT_H__
-#define __KLINPUT_H__
+#ifndef __HLINPUT_H__
+#define __HLINPUT_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
-#include "KLDirect3D.h"
+#include "HLCommon.h"
+#include "HLDirect3D.h"
 
 //---------------------------------------------------------------------------------------------
 //	enum
 //---------------------------------------------------------------------------------------------
 // マウスボタン定義
-enum KLMOUSE_BUTTONS
+enum HLMOUSE_BUTTONS
 {
-	KLMOUSE_L = 0,			// 左
-	KLMOUSE_R,				// 右
-	KLMOUSE_CENTER,			// 真ん中
-	MAX_KLMOUSE_BUTTONS
+	HLMOUSE_L = 0,			// 左
+	HLMOUSE_R,				// 右
+	HLMOUSE_CENTER,			// 真ん中
+	MAX_HLMOUSE_BUTTONS
 };
 
 // ゲームパッドボタン定義
-enum KLGAMEPAD_BUTTONS
+enum HLGAMEPAD_BUTTONS
 {
-	KLGAMEPAD_A = 0,		// A
-	KLGAMEPAD_B,			// B
-	KLGAMEPAD_X,			// X
-	KLGAMEPAD_Y,			// Y
-	KLGAMEPAD_LB,			// LB
-	KLGAMEPAD_RB,			// RB
-	KLGAMEPAD_BACK,			// BACK
-	KLGAMEPAD_START,		// START
-	KLGAMEPAD_D_UP,			// D UP
-	KLGAMEPAD_D_DOWN,		// D DOWN
-	KLGAMEPAD_D_LEFT,		// D LEFT
-	KLGAMEPAD_D_RIGHT,		// D RIGHT
-	KLGAMEPAD_L_STICK_BUTTON,// L STICK BUTTON
-	KLGAMEPAD_L_STICK_UP,	// L STICK UP
-	KLGAMEPAD_L_STICK_DOWN,	// L STICK DOWN
-	KLGAMEPAD_L_STICK_LEFT,	// L STICK LEFT
-	KLGAMEPAD_L_STICK_RIGHT,// L STICK RIGHT
-	KLGAMEPAD_R_STICK_BUTTON,// R STICK BUTTON
-	KLGAMEPAD_R_STICK_UP,	// R STICK UP
-	KLGAMEPAD_R_STICK_DOWN,	// R STICK DOWN
-	KLGAMEPAD_R_STICK_LEFT,	// R STICK LEFT
-	KLGAMEPAD_R_STICK_RIGHT,// R STICK RIGHT
-	MAX_KLGAMEPAD_BUTTONS
+	HLGAMEPAD_A = 0,		// A
+	HLGAMEPAD_B,			// B
+	HLGAMEPAD_X,			// X
+	HLGAMEPAD_Y,			// Y
+	HLGAMEPAD_LB,			// LB
+	HLGAMEPAD_RB,			// RB
+	HLGAMEPAD_BACK,			// BACK
+	HLGAMEPAD_START,		// START
+	HLGAMEPAD_D_UP,			// D UP
+	HLGAMEPAD_D_DOWN,		// D DOWN
+	HLGAMEPAD_D_LEFT,		// D LEFT
+	HLGAMEPAD_D_RIGHT,		// D RIGHT
+	HLGAMEPAD_L_STICK_BUTTON,// L STICK BUTTON
+	HLGAMEPAD_L_STICK_UP,	// L STICK UP
+	HLGAMEPAD_L_STICK_DOWN,	// L STICK DOWN
+	HLGAMEPAD_L_STICK_LEFT,	// L STICK LEFT
+	HLGAMEPAD_L_STICK_RIGHT,// L STICK RIGHT
+	HLGAMEPAD_R_STICK_BUTTON,// R STICK BUTTON
+	HLGAMEPAD_R_STICK_UP,	// R STICK UP
+	HLGAMEPAD_R_STICK_DOWN,	// R STICK DOWN
+	HLGAMEPAD_R_STICK_LEFT,	// R STICK LEFT
+	HLGAMEPAD_R_STICK_RIGHT,// R STICK RIGHT
+	MAX_HLGAMEPAD_BUTTONS
 };
 
 //---------------------------------------------------------------------------------------------
@@ -75,11 +75,11 @@ struct MOUSE_POSITION
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLInput
+class HLInput
 {
 public:
-	KLInput();
-	~KLInput();
+	HLInput();
+	~HLInput();
 
 	bool Init();			// 初期化
 	void Destroy();			// 破棄
@@ -96,22 +96,22 @@ public:
 	bool IsReleaseKeyboard(Keyboard::Keys Key);
 	
 	// マウス：ボタンが押されたか？(押しっぱなし有効)
-	bool IsPressMouse(KLMOUSE_BUTTONS Button);
+	bool IsPressMouse(HLMOUSE_BUTTONS Button);
 	// マウス：ボタンが押されたか？(押しっぱなし無効)
-	bool IsPushMouse(KLMOUSE_BUTTONS Button);
+	bool IsPushMouse(HLMOUSE_BUTTONS Button);
 	// マウス：ボタンが離されたか
-	bool IsReleaseMouse(KLMOUSE_BUTTONS Button);
+	bool IsReleaseMouse(HLMOUSE_BUTTONS Button);
 	// マウス：座標取得
 	MOUSE_POSITION GetMousePosition();
 	// マウス：スクロールホイール取得
 	int GetMouseScrollWheel();
 
 	// ゲームパッド：ボタンが押されたか？(押しっぱなし有効)
-	bool IsPressGamePad(int Number, KLGAMEPAD_BUTTONS Button);
+	bool IsPressGamePad(int Number, HLGAMEPAD_BUTTONS Button);
 	// ゲームパッド：ボタンが押されたか？(押しっぱなし無効)
-	bool IsPushGamePad(int Number, KLGAMEPAD_BUTTONS Button);
+	bool IsPushGamePad(int Number, HLGAMEPAD_BUTTONS Button);
 	// ゲームパッド：ボタンが離されたか
-	bool IsReleaseGamePad(int Number, KLGAMEPAD_BUTTONS Button);
+	bool IsReleaseGamePad(int Number, HLGAMEPAD_BUTTONS Button);
 	// ゲームパッド：左スティック取得
 	Vector2 GetGamePadLeftStick(int Number);
 	// ゲームパッド：右スティック取得
@@ -136,4 +136,4 @@ private:
 };
 
 
-#endif //__KLINPUT_H__
+#endif //__HLINPUT_H__

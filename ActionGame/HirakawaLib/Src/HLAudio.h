@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLAudio.h
+//		HLAudio.h
 //
 //		@brief	KoudoLib サウンド管理
 //		@author	Yasushi Hirakawa
@@ -8,25 +8,25 @@
 //
 ****************************************************************************************************/
 
-#ifndef __KLAUDIO_H__
-#define __KLAUDIO_H__
+#ifndef __HLAUDIO_H__
+#define __HLAUDIO_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
+#include "HLCommon.h"
 
 //---------------------------------------------------------------------------------------------
 //	struct
 //--------------------------------------------------------------------------------------------- 
 // オーディオデータ構造体
-typedef struct KLAudioData
+typedef struct HLAudioData
 {
 	std::unique_ptr<SoundEffectInstance>	p_audio_instance;		// オーディオインスタンスデータ
 	wchar_t									p_file_name[kStrMax];	// モデルファイル名
 
-	KLAudioData()
+	HLAudioData()
 	{
 		p_audio_instance = NULL;
 		p_file_name[0]	= '\0';
@@ -45,48 +45,48 @@ typedef struct KLAudioData
 	// パン設定
 	inline void SetPan(float Pan) { p_audio_instance->SetPan(Pan); }
 
-} *LPKLAudioData;
+} *LPHLAudioData;
 
 // オーディオデータリスト構造体
-typedef struct KLAudioDataList
+typedef struct HLAudioDataList
 {
-	KLAudioData*			p_audio_data;	// オーディオデータ
+	HLAudioData*			p_audio_data;	// オーディオデータ
 	SoundEffect*			p_audio_origin;	// オーディオの元データ
-	KLAudioDataList*		p_next;			// リストの次データ
+	HLAudioDataList*		p_next;			// リストの次データ
 	int						ref_counter;	// 参照カウンタ
 
-	KLAudioDataList()
+	HLAudioDataList()
 	{
 		p_audio_data	= NULL;
 		p_audio_origin	= NULL;
 		p_next			= NULL;
 		ref_counter		= 1;
 	}
-} *LPKLAudioDataList;
+} *LPHLAudioDataList;
 
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLAudio
+class HLAudio
 {
 public:
-	KLAudio();
-	~KLAudio();
+	HLAudio();
+	~HLAudio();
 
 	bool Init();				// 初期化
 	void Destroy();				// 破棄
 	void Update();				// 更新
 
 	// オーディオデータ読み込み
-	bool	CreateAudioDataFromWave(const wchar_t* pFilename, LPKLAudioData* ppAudioData);
+	bool	CreateAudioDataFromWave(const wchar_t* pFilename, LPHLAudioData* ppAudioData);
 
 	// オーディオデータ解放
-	bool	ReleaseAudioData(LPKLAudioData pAudioData);
+	bool	ReleaseAudioData(LPHLAudioData pAudioData);
 
 private:
 	AudioEngine*		p_audio_engine_;		// オーディオエンジン
-	LPKLAudioDataList	p_audio_data_list_top_;	// オーディオデータリスト先頭
+	LPHLAudioDataList	p_audio_data_list_top_;	// オーディオデータリスト先頭
 };
 
 
-#endif //__KLAUDIO_H__
+#endif //__HLAUDIO_H__

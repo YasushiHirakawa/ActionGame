@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLModel.cpp
+//		HLModel.cpp
 //
 //		@brief	KoudoLib モデル描画管理
 //		@author	Yasushi Hirakawa
@@ -8,7 +8,7 @@
 //
 ****************************************************************************************************/
 
-#include "KLModel.h"
+#include "HLModel.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -17,14 +17,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLModel::KLModel()
+HLModel::HLModel()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLModel::~KLModel()
+HLModel::~HLModel()
 {
 }
 
@@ -34,7 +34,7 @@ KLModel::~KLModel()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLModel::Init(ID3D11Device* pDevice)
+bool HLModel::Init(ID3D11Device* pDevice)
 {
 	bool ret = true;
 
@@ -60,10 +60,10 @@ bool KLModel::Init(ID3D11Device* pDevice)
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLModel::Destroy()
+void HLModel::Destroy()
 {
 	// リストデータ全削除
-	LPKLModelDataList	p_list = p_model_data_list_top_,
+	LPHLModelDataList	p_list = p_model_data_list_top_,
 						p_delete_list = NULL;
 	while (p_list != NULL) {
 		p_delete_list = p_list;
@@ -73,7 +73,7 @@ void KLModel::Destroy()
 		wchar_t	warning_message[kStrMax];
 		wcscpy_s(warning_message, L"解放されていないモデルがあったので強制開放しました。\n");
 		wcscat_s(warning_message, p_delete_list->p_model_data->p_file_name);
-		MessageBox(KLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
+		MessageBox(HLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
 #endif
 
 		SAFE_DELETE(p_delete_list->p_model_data);
@@ -87,7 +87,7 @@ void KLModel::Destroy()
 /*---------------------------------------------------------------------------------------------
 //	@brief	更新
 ---------------------------------------------------------------------------------------------*/
-void KLModel::Update()
+void HLModel::Update()
 {
 	// 更新フラグが立っていなければ更新しない
 	if (update_flag_ == false) {
@@ -95,7 +95,7 @@ void KLModel::Update()
 	}
 
 	// ライト情報とフォグ情報の更新
-	LPKLModelDataList model_list = p_model_data_list_top_;
+	LPHLModelDataList model_list = p_model_data_list_top_;
 	while (model_list != NULL) {
 		model_list->p_model_data->p_model->UpdateEffects([&](IEffect* effect)
 		{
@@ -125,17 +125,17 @@ void KLModel::Update()
 //	@brief	モデルデータ作成
 //	@param	ID3D11Device*	pDevice		：デバイス
 //	@param	const wchar_t*	pFilename	：ファイル名
-//	@param	LPKLModelData*	ppModelData	：モデルデータ格納先ポインタ
+//	@param	LPHLModelData*	ppModelData	：モデルデータ格納先ポインタ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, LPKLModelData* ppModelData)
+bool HLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, LPHLModelData* ppModelData)
 {
 	bool				ret = true;
-	LPKLModelDataList	p_list = NULL;
+	LPHLModelDataList	p_list = NULL;
 	
-	LPKLModelData		p_model_data = NULL;
-	LPKLModelDataList	p_model_data_list = NULL;
+	LPHLModelData		p_model_data = NULL;
+	LPHLModelDataList	p_model_data_list = NULL;
 
 	do {
 
@@ -159,7 +159,7 @@ bool KLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, L
 		}
 
 		// モデルデータのメモリ確保
-		p_model_data = new KLModelData;
+		p_model_data = new HLModelData;
 		if (p_model_data == NULL) {
 			ret = false;
 			break;
@@ -176,7 +176,7 @@ bool KLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, L
 			wchar_t	warning_message[kStrMax];
 			wcscpy_s(warning_message, L"読み込めないファイル形式です。\n");
 			wcscat_s(warning_message, pFilename);
-			MessageBox(KLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
+			MessageBox(HLCommon::GetWindowHandle(), warning_message, L"Warning!", MB_OK);
 		}
 		if (p_model_data->p_model == NULL) {
 			ret = false;
@@ -187,7 +187,7 @@ bool KLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, L
 		wcscpy_s(p_model_data->p_file_name, pFilename);
 
 		// モデルデータリストのメモリ確保
-		p_model_data_list = new KLModelDataList;
+		p_model_data_list = new HLModelDataList;
 		if (p_model_data_list == NULL) {
 			ret = false;
 			break;
@@ -248,16 +248,16 @@ bool KLModel::CreateModelData(ID3D11Device* pDevice, const wchar_t* pFilename, L
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	モデルデータ解放
-//	@param	LPKLModelData	pModelData	：解放するモデルデータ
+//	@param	LPHLModelData	pModelData	：解放するモデルデータ
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLModel::ReleaseModelData(LPKLModelData pModelData)
+bool HLModel::ReleaseModelData(LPHLModelData pModelData)
 {
 	bool	ret = false;
 
 	// モデルデータリストにモデルデータがあるかチェック
-	LPKLModelDataList	p_list = p_model_data_list_top_, 
+	LPHLModelDataList	p_list = p_model_data_list_top_, 
 						p_prev_list = NULL;
 	while (p_list != NULL) {
 		// 同名のモデルデータがあったら参照カウンタをデクリメントして、

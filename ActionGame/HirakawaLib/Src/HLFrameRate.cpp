@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************************
 //
-//		KLFrameRate.cpp
+//		HLFrameRate.cpp
 //
 //		@brief	KoudoLib フレームレート管理
 //		@author	Yasushi Hirakawa
@@ -9,7 +9,7 @@
 ****************************************************************************************************/
 
 
-#include "KLFrameRate.h"
+#include "HLFrameRate.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLFrameRate::KLFrameRate()
+HLFrameRate::HLFrameRate()
 : draw_flag_(true)
 {
 }
@@ -26,7 +26,7 @@ KLFrameRate::KLFrameRate()
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLFrameRate::~KLFrameRate()
+HLFrameRate::~HLFrameRate()
 {
 }
 
@@ -35,7 +35,7 @@ KLFrameRate::~KLFrameRate()
 //	@retval	true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLFrameRate::Init()
+bool HLFrameRate::Init()
 {
 	bool ret = true;
 
@@ -61,7 +61,7 @@ bool KLFrameRate::Init()
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-void KLFrameRate::Destroy()
+void HLFrameRate::Destroy()
 {
 }
 
@@ -69,7 +69,7 @@ void KLFrameRate::Destroy()
 //	@brief	FPS値を取得
 //	@retval double型	：FPS値
 ---------------------------------------------------------------------------------------------*/
-double KLFrameRate::GetFPS()
+double HLFrameRate::GetFPS()
 {
 	double Def = GetCurDefTime();
 	if (Def == 0) {
@@ -84,7 +84,7 @@ double KLFrameRate::GetFPS()
 //	@brief	現在の差分時刻をミリ秒単位で取得
 //	@retval	double型	：前フレームとの差分（ミリ秒）
 ---------------------------------------------------------------------------------------------*/
-double KLFrameRate::GetCurDefTime()
+double HLFrameRate::GetCurDefTime()
 {
 	double ret = 0.0;
 
@@ -114,7 +114,7 @@ double KLFrameRate::GetCurDefTime()
 //	@brief	FPSを更新
 //	@retval	double型	：FPS値
 ---------------------------------------------------------------------------------------------*/
-double KLFrameRate::UpdateFPS(double Def)
+double HLFrameRate::UpdateFPS(double Def)
 {
 	diffrent_time_save_ = Def;
 

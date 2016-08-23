@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLTexture.h
+//		HLTexture.h
 //
 //		@brief	KoudoLib テクスチャ管理
 //		@author	Yasushi Hirakawa
@@ -8,15 +8,15 @@
 //
 ****************************************************************************************************/
 
-#ifndef __KLTEXTURE_H__
-#define __KLTEXTURE_H__
+#ifndef __HLTEXTURE_H__
+#define __HLTEXTURE_H__
 
 
 //---------------------------------------------------------------------------------------------
 //	include
 //---------------------------------------------------------------------------------------------
-#include "KLCommon.h"
-#include "KLDirect3D.h"
+#include "HLCommon.h"
+#include "HLDirect3D.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -28,55 +28,55 @@
 //	struct
 //--------------------------------------------------------------------------------------------- 
 // テクスチャデータ構造体
-typedef struct KLTextureData
+typedef struct HLTextureData
 {
 	ID3D11ShaderResourceView*	p_texture;				// テクスチャデータ
 	wchar_t						p_file_name[kStrMax];	// モデルファイル名
 
-	KLTextureData()
+	HLTextureData()
 	{
 		p_texture = NULL;
 		p_file_name[0] = '\0';
 	}
-} *LPKLTextureData;
+} *LPHLTextureData;
 
 // テクスチャデータリスト構造体
-typedef struct KLTextureDataList
+typedef struct HLTextureDataList
 {
-	KLTextureData*			p_texture_data;	// テクスチャデータ
-	KLTextureDataList*		p_next;			// リストの次データ
+	HLTextureData*			p_texture_data;	// テクスチャデータ
+	HLTextureDataList*		p_next;			// リストの次データ
 	int						ref_counter;	// 参照カウンタ
 
-	KLTextureDataList()
+	HLTextureDataList()
 	{
 		p_texture_data	= NULL;
 		p_next			= NULL;
 		ref_counter		= 1;
 	}
-} *LPKLTextureDataList;
+} *LPHLTextureDataList;
 
 
 //---------------------------------------------------------------------------------------------
 //	class
 //---------------------------------------------------------------------------------------------
-class KLTexture
+class HLTexture
 {
 public:
-	KLTexture();
-	~KLTexture();
+	HLTexture();
+	~HLTexture();
 
 	bool Init();			// 初期化
 	void Destroy();			// 破棄
 
 	// テクスチャデータ作成
-	bool CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilename, LPKLTextureData* ppTextureData);
+	bool CreateTextureData(ID3D11Device* pDevice, const wchar_t* pFilename, LPHLTextureData* ppTextureData);
 
 	// テクスチャデータ解放
-	bool ReleaseTextureData(LPKLTextureData pTextureData);
+	bool ReleaseTextureData(LPHLTextureData pTextureData);
 
 private:
-	LPKLTextureDataList		p_texture_data_list_top_;	// テクスチャデータリストのトップ
+	LPHLTextureDataList		p_texture_data_list_top_;	// テクスチャデータリストのトップ
 };
 
 
-#endif //__KLTEXTURE_H__
+#endif //__HLTEXTURE_H__

@@ -1,6 +1,6 @@
 /****************************************************************************************************
 //
-//		KLSprite.h
+//		HLSprite.h
 //
 //		@brief	KoudoLib スプライト描画管理
 //		@author	Yasushi Hirakawa
@@ -8,7 +8,7 @@
 //
 ****************************************************************************************************/
 
-#include "KLSprite.h"
+#include "HLSprite.h"
 
 
 //---------------------------------------------------------------------------------------------
@@ -17,14 +17,14 @@
 /*---------------------------------------------------------------------------------------------
 //	@brief	コンストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLSprite::KLSprite()
+HLSprite::HLSprite()
 {
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	デストラクタ
 ---------------------------------------------------------------------------------------------*/
-KLSprite::~KLSprite()
+HLSprite::~HLSprite()
 {
 }
 
@@ -35,7 +35,7 @@ KLSprite::~KLSprite()
 //	@retval true	：成功
 //	@retval false	：失敗
 ---------------------------------------------------------------------------------------------*/
-bool KLSprite::Init(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext)
+bool HLSprite::Init(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext)
 {
 	bool ret = true;
 
@@ -64,7 +64,7 @@ bool KLSprite::Init(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext)
 /*---------------------------------------------------------------------------------------------
 //	@brief	破棄
 ---------------------------------------------------------------------------------------------*/
-void KLSprite::Destroy()
+void HLSprite::Destroy()
 {
 	SAFE_DELETE(p_sprite_batch_);
 	SAFE_DELETE(p_sprite_font_);
@@ -74,7 +74,7 @@ void KLSprite::Destroy()
 //	@brief	描画開始
 //	@param	CommonStates* pStates	：コモンステータス
 ---------------------------------------------------------------------------------------------*/
-void KLSprite::BeginSprite(CommonStates* pStates)
+void HLSprite::BeginSprite(CommonStates* pStates)
 {
 	p_sprite_batch_->Begin(SpriteSortMode_Deferred, pStates->NonPremultiplied());
 }
@@ -82,14 +82,14 @@ void KLSprite::BeginSprite(CommonStates* pStates)
 /*---------------------------------------------------------------------------------------------
 //	@brief	描画終了
 ---------------------------------------------------------------------------------------------*/
-void KLSprite::EndSprite()
+void HLSprite::EndSprite()
 {
 	p_sprite_batch_->End();
 }
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	スプライト描画
-//	@param	LPKLTextureData pTextureData	：描画するテクスチャデータ
+//	@param	LPHLTextureData pTextureData	：描画するテクスチャデータ
 //	@param	Vector2			Position		：描画する座標
 //	@param	RECT			Rect			：テクスチャ切り取り範囲
 //	@param	Vector4			Color			：テクスチャカラー
@@ -97,7 +97,7 @@ void KLSprite::EndSprite()
 //	@param	float			Rotation		：回転
 //	@param	float			Scale			：拡大
 ---------------------------------------------------------------------------------------------*/
-void KLSprite::DrawSprite(LPKLTextureData pTextureData, Vector2 Position, RECT Rect, Vector4 Color,
+void HLSprite::DrawSprite(LPHLTextureData pTextureData, Vector2 Position, RECT Rect, Vector4 Color,
 							Vector2 Origin, float Rotation, float Scale)
 {
 	p_sprite_batch_->Draw(pTextureData->p_texture, Position, &Rect, Color, Rotation, Origin, Scale);
@@ -106,7 +106,7 @@ void KLSprite::DrawSprite(LPKLTextureData pTextureData, Vector2 Position, RECT R
 /*---------------------------------------------------------------------------------------------
 //	@brief	文字列描画
 ---------------------------------------------------------------------------------------------*/
-void KLSprite::DrawFont(wchar_t* pString, Vector2 Position, XMVECTOR Color)
+void HLSprite::DrawFont(wchar_t* pString, Vector2 Position, XMVECTOR Color)
 {
 	p_sprite_font_->DrawString(p_sprite_batch_, pString, Position, Color);
 }

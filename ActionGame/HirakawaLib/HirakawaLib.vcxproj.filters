@@ -16,61 +16,61 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Inc\KoudoLib.cpp">
+    <ClCompile Include="Src\HLAudio.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLCommon.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLDirect3D.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLFrameRate.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLInput.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLModel.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLSprite.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HLTexture.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\HirakawaLib.cpp">
       <Filter>Inc</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLAudio.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLCommon.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLDirect3D.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLFrameRate.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLInput.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLModel.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLSprite.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\KLTexture.cpp">
-      <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\KoudoLib.h">
+    <ClInclude Include="Src\HLAudio.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLCommon.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLDirect3D.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLFrameRate.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLInput.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLModel.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLSprite.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HLTexture.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\HirakawaLib.h">
       <Filter>Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLAudio.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLCommon.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLDirect3D.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLFrameRate.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLInput.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLModel.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLSprite.h">
-      <Filter>Src</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\KLTexture.h">
-      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
