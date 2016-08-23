@@ -5,3 +5,10 @@
 *.opendb
 *.db
 *.suo
+/ActionGame/packages/directxtk_desktop_2015.2016.8.4.1
+/ActionGame/Debug
+/ActionGame/Release
+/ActionGame/HirakawaLib/Debug
+/ActionGame/HirakawaLib/Release
+/ActionGame/ActionGame/Debug
+/ActionGame/ActionGame/Release

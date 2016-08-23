@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Inc">
+      <UniqueIdentifier>{8025cbd3-c156-4d03-9377-5ece086e4566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{ea8ce512-8156-4fd9-9de9-f8e21d4b6574}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Inc\KoudoLib.cpp">
+      <Filter>Inc</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLAudio.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLCommon.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLDirect3D.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLFrameRate.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLInput.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLModel.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLSprite.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\KLTexture.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\KoudoLib.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLAudio.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLCommon.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLDirect3D.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLFrameRate.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLInput.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLModel.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLSprite.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\KLTexture.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
