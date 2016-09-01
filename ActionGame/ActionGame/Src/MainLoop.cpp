@@ -108,9 +108,9 @@ int MainLoop::GameInit()
 {
 	HirakawaLib::CreateTextureData(L"Resource/windowslogo.dds", &p_texture_data_);
 	HirakawaLib::CreateTextureData(L"Resource/gameloader.png", &p_texture_data_alpha_);
-	//HirakawaLib::CreateAudioData(L"Resource/bgm_01.wav", &p_audio_data_);
+	HirakawaLib::CreateAudioData(L"Resource/bgm_01.wav", &p_audio_data_);
 
-	//p_audio_data_->Play();
+	p_audio_data_->Play();
 
 	_wchdir(L"Resource");
 	HirakawaLib::CreateModelData(L"tiny.sdkmesh", &p_model_data_);
@@ -139,11 +139,11 @@ int MainLoop::GameWork()
 {
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_L_STICK_RIGHT)) {
 		position_.x += 10.0f;
-		//p_audio_data_->Play();
+		p_audio_data_->Play();
 	}
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_L_STICK_LEFT)) {
 		position_.x -= 10.0f;
-		//p_audio_data_->Stop();
+		p_audio_data_->Stop();
 	}
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_L_STICK_UP)) {
 		position_.y += 10.0f;
@@ -153,11 +153,11 @@ int MainLoop::GameWork()
 	}
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_R_STICK_RIGHT)) {
 		position_.x += 10.0f;
-		//p_audio_data_->Play();
+		p_audio_data_->Play();
 	}
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_R_STICK_LEFT)) {
 		position_.x -= 10.0f;
-		//p_audio_data_->Stop();
+		p_audio_data_->Stop();
 	}
 	if (HirakawaLib::IsPushGamePad(0, HLGAMEPAD_R_STICK_UP)) {
 		position_.y += 10.0f;
@@ -193,7 +193,7 @@ int MainLoop::GameDestroy()
 	HirakawaLib::ReleaseTextureData(p_texture_data_);
 	HirakawaLib::ReleaseTextureData(p_texture_data_alpha_);
 	HirakawaLib::ReleaseModelData(p_model_data_);
-	//HirakawaLib::ReleaseAudioData(p_audio_data_);
+	HirakawaLib::ReleaseAudioData(p_audio_data_);
 
 	return 0;
 }

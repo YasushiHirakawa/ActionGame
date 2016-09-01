@@ -66,7 +66,7 @@ private:
 	LPHLTextureData		p_texture_data_;
 	LPHLTextureData		p_texture_data_alpha_;
 	LPHLModelData		p_model_data_;
-	//LPHLAudioData		p_audio_data_;
+	LPHLAudioData		p_audio_data_;
 
 	Vector3				position_;
 

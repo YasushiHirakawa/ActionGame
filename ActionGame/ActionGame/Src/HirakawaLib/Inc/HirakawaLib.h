@@ -22,7 +22,7 @@
 #include "../Src/HLTexture.h"
 #include "../Src/HLModel.h"
 #include "../Src/HLInput.h"
-//#include "../Src/HLAudio.h"
+#include "../Src/HLAudio.h"
 
 //---------------------------------------------------------------------------------------------
 //	define
@@ -93,8 +93,8 @@ public:
 	static bool CreateModelData(wchar_t* pFilename, LPHLModelData* ppModelData);
 	static bool ReleaseModelData(LPHLModelData pModelData);
 	// オーディオデータ作成・解放
-	//static bool CreateAudioData(wchar_t* pFilename, LPHLAudioData* ppAudioData);
-	//static bool ReleaseAudioData(LPHLAudioData pAudioData);
+	static bool CreateAudioData(wchar_t* pFilename, LPHLAudioData* ppAudioData);
+	static bool ReleaseAudioData(LPHLAudioData pAudioData);
 
 	// 描画の開始・終了 --------------------------------------------------------------
 	// 描画開始・終了
@@ -132,7 +132,7 @@ private:
 	static HLTexture*		p_hl_texture_;			// テクスチャデータ管理
 	static HLModel*			p_hl_model_;			// モデルデータ管理
 	static HLInput*			p_hl_input_;			// 入力管理
-	//static HLAudio*			p_hl_audio_;			// オーディオ管理
+	static HLAudio*			p_hl_audio_;			// オーディオ管理
 
 	static Matrix			camera_view_matrix_;		// カメラのビュー行列
 	static Matrix			camera_projection_matrix_;	// カメラの射影行列

@@ -20,7 +20,7 @@ HLSprite*		HirakawaLib::p_hl_sprite_;				// スプライトデータ管理
 HLTexture*		HirakawaLib::p_hl_texture_;			// テクスチャデータ管理
 HLModel*		HirakawaLib::p_hl_model_;				// モデルデータ管理
 HLInput*		HirakawaLib::p_hl_input_;				// 入力管理
-//HLAudio*		HirakawaLib::p_hl_audio_;				// オーディオ管理
+HLAudio*		HirakawaLib::p_hl_audio_;				// オーディオ管理
 
 Matrix			HirakawaLib::camera_view_matrix_;			// カメラのビュー行列
 Matrix			HirakawaLib::camera_projection_matrix_;	// カメラの射影行列
@@ -122,15 +122,15 @@ bool HirakawaLib::Init(HWND hWnd)
 		}
 
 		// オーディオ管理
-		//p_hl_audio_ = new HLAudio;
-		//if (p_hl_audio_ == NULL) {
-		//	ret = false;
-		//	break;
-		//}
-		//if (p_hl_audio_->Init() == false) {
-		//	ret = false;
-		//	break;
-		//}
+		p_hl_audio_ = new HLAudio;
+		if (p_hl_audio_ == NULL) {
+			ret = false;
+			break;
+		}
+		if (p_hl_audio_->Init() == false) {
+			ret = false;
+			break;
+		}
 
 		// ウィンドウハンドルの保存
 		HLCommon::SetWindowHandle(hWnd);
@@ -162,8 +162,8 @@ void HirakawaLib::Destroy()
 	SAFE_DELETE(p_hl_framer_rate_);
 	p_hl_direct3d_->Destroy();		// Direct3D
 	SAFE_DELETE(p_hl_direct3d_);
-	//p_hl_audio_->Destroy();			// オーディオ
-	//SAFE_DELETE(p_hl_audio_);
+	p_hl_audio_->Destroy();			// オーディオ
+	SAFE_DELETE(p_hl_audio_);
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -189,7 +189,7 @@ bool HirakawaLib::Update()
 		p_hl_input_->Update();
 
 		// オーディオ更新
-		//p_hl_audio_->Update();
+		p_hl_audio_->Update();
 
 		// モデル更新
 		p_hl_model_->Update();
@@ -446,10 +446,10 @@ bool HirakawaLib::ReleaseModelData(LPHLModelData pModelData)
 //	@retval	true	：成功
 //	@retval	false	：失敗
 ---------------------------------------------------------------------------------------------*/
-//bool HirakawaLib::CreateAudioData(wchar_t* pFilename, LPHLAudioData* ppAudioData)
-//{
-//	return p_hl_audio_->CreateAudioDataFromWave(pFilename, ppAudioData);
-//}
+bool HirakawaLib::CreateAudioData(wchar_t* pFilename, LPHLAudioData* ppAudioData)
+{
+	return p_hl_audio_->CreateAudioDataFromWave(pFilename, ppAudioData);
+}
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	モデルデータ解放
@@ -457,10 +457,10 @@ bool HirakawaLib::ReleaseModelData(LPHLModelData pModelData)
 //	@retval	true	：成功
 //	@retval	false	：失敗
 ---------------------------------------------------------------------------------------------*/
-//bool HirakawaLib::ReleaseAudioData(LPHLAudioData pAudioData)
-//{
-//	return p_hl_audio_->ReleaseAudioData(pAudioData);
-//}
+bool HirakawaLib::ReleaseAudioData(LPHLAudioData pAudioData)
+{
+	return p_hl_audio_->ReleaseAudioData(pAudioData);
+}
 
 /*---------------------------------------------------------------------------------------------
 //	@brief	スプライト描画
