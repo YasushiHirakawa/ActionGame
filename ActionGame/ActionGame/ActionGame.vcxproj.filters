@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="HirakawaLib">
+      <UniqueIdentifier>{e28ef4c9-7db3-43a1-a50f-1b13beeb64ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HirakawaLib\Inc">
+      <UniqueIdentifier>{cad124d4-2907-4c98-8a50-b974e116401d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HirakawaLib\Src">
+      <UniqueIdentifier>{5722c796-89c0-4a33-8278-103ec566ac3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{a339988c-6478-45b5-9222-73450bc36760}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\HirakawaLib\Inc\HirakawaLib.cpp">
+      <Filter>HirakawaLib\Inc</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLCommon.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLDirect3D.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLFrameRate.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLInput.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLModel.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLSprite.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLTexture.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MainLoop.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\HirakawaLib\Src\HLAudio.cpp">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\HirakawaLib\Inc\HirakawaLib.h">
+      <Filter>HirakawaLib\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLCommon.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLDirect3D.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLFrameRate.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLInput.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLModel.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLSprite.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLTexture.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MainLoop.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\HirakawaLib\Src\HLAudio.h">
+      <Filter>HirakawaLib\Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
